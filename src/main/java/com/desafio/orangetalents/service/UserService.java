@@ -2,7 +2,6 @@ package com.desafio.orangetalents.service;
 
 import com.desafio.orangetalents.model.Address;
 import com.desafio.orangetalents.model.User;
-import com.desafio.orangetalents.model.exception.UsuarioNotFoundException;
 import com.desafio.orangetalents.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,21 +20,21 @@ public class UserService {
         this.addressService = addressService;
     }
 
-    public User addUsuario(User user){
+    public User addUser(User user){
             return userRepository.save(user);
     }
 
-    public User getUsuario(Long id){
+    public User getUser(Long id){
         return userRepository.findById(id).orElseThrow(() ->
-                new UsuarioNotFoundException(id));
+                new RuntimeException());
     }
 
     @Transactional
-    public User addEnderecoToUsuario(Long usuarioId, Long enderecoId){
-        User user = getUsuario(usuarioId);
-        Address address = addressService.getEndereco(enderecoId);
+    public User addAddressToUser(Long userId, Long addressId){
+        User user = getUser(userId);
+        Address address = addressService.getAddress(addressId);
             user.addEndereco(address);
-        return user;
+            return user;
     }
 
 }

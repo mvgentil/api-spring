@@ -1,11 +1,8 @@
 package com.desafio.orangetalents.service;
 
 import com.desafio.orangetalents.model.Address;
-import com.desafio.orangetalents.model.exception.EnderecoNotFoundException;
 import com.desafio.orangetalents.repository.AddressRepository;
-//import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-//import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,16 +17,16 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public Address addEndereco(Address address){
+    public Address addAddress(Address address){
             return addressRepository.save(address);
     }
 
-    public Address getEndereco(Long id){
+    public Address getAddress(Long id){
         return addressRepository.findById(id).orElseThrow(() ->
-                new EnderecoNotFoundException(id));
+                new RuntimeException());
     }
 
-    public List<Address> getEnderecos(){
+    public List<Address> getAddresses(){
         return StreamSupport
                 .stream(addressRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());

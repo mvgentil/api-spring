@@ -5,8 +5,6 @@ import com.desafio.orangetalents.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-//import java.util.List;
-
 @RestController
 @RequestMapping("/usuarios")
 public class UserController {
@@ -20,21 +18,21 @@ public class UserController {
 
     @PostMapping
     public User registerNewUser(@RequestBody User user) {
-        userService.addUsuario(user);
-        return user;
+            userService.addUser(user);
+            return user;
     }
 
     @GetMapping(value = "{id}")
     public User getUser(@PathVariable final Long id){
-        User user = userService.getUsuario(id);
-        return user;
+            User user = userService.getUser(id);
+            return user;
     }
 
-    @PostMapping(value = "{usuarioId}/enderecos/{enderecoId}/add")
+    @PostMapping(value = "{userId}/enderecos/{addressId}/add")
     public User addAddressToUser(@PathVariable final Long userId,
                                  @PathVariable final Long addressId){
-        User user = userService.addEnderecoToUsuario(userId, addressId);
-        return user;
+            User user = userService.addAddressToUser(userId, addressId);
+            return user;
     }
 
 }

@@ -17,9 +17,9 @@ public class AddressController {
     }
 
     @PostMapping
-    public Address addEndereco(@RequestBody Address address) {
-        addressService.addEndereco(address);
-        return address;
+    public Address registerAddress(@RequestBody Address address) {
+            addressService.addAddress(address);
+            return address;
     }
 
 }
