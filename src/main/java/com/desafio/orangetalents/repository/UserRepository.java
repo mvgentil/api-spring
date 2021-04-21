@@ -1,9 +1,9 @@
 package com.desafio.orangetalents.repository;
 
-import com.desafio.orangetalents.model.Usuario;
+import com.desafio.orangetalents.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 }
